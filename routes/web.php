@@ -13,21 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/hello', function () {
-    return 'Hello World';
-});
+Route::get('/hello', [App\Http\Controllers\WelcomeController::class, 'hello']);
 
 Route::get('/world', function () {
     return 'World';
 });
 
-Route::get('/welcome', function () {
-    return 'Selamat Datang';
-});
+Route::get('/index', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/data', function () {
-    return 'Muhammad Ammar Hafizh - 2341720074';
-});
+Route::get('/about', [App\Http\Controllers\AboutController::class, 'about']);
 
 Route::get('/user/{name}', function ($name) {
     return 'Nama saya ' . $name;
@@ -37,9 +31,7 @@ Route::get('/posts/{post}/comments/{comment}', function ($post, $comment) {
     return 'Post ke-' . $post . ' Komentar ke-' . $comment;
 });
 
-Route::get('/article/{id}', function ($id) {
-    return 'Artikel ke-' . $id;
-});
+Route::get('/articles/{id}', [App\Http\Controllers\ArticleController::class, 'articles']);
 
 Route::get('/user/{name?}', function ($name = 'John') {
     return 'Nama saya ' . $name;
@@ -48,3 +40,5 @@ Route::get('/user/{name?}', function ($name = 'John') {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('photos', App\Http\Controllers\PhotoController::class);
