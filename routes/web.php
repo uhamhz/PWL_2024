@@ -42,3 +42,5 @@ Route::get('/', function () {
 });
 
 Route::resource('photos', App\Http\Controllers\PhotoController::class);
+
+Route::get('/greeting', [App\Http\Controllers\WelcomeController::class, 'greeting']);
